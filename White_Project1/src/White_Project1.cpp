@@ -253,7 +253,7 @@ using namespace std;
 
 class Date {
 public:
-  // конструктор выбрасывает исключение, если его аргументы некорректны
+  // Constructor throw an exception, if it's arguments are incorrect
   Date(int new_year, int new_month, int new_day) {
     year = new_year;
     if (new_month > 12 || new_month < 1) {
@@ -282,15 +282,15 @@ private:
   int day;
 };
 
-// определить сравнение для дат необходимо для использования их в качестве ключей словаря
+// defining compariance for Dates is for using it as map keys
 bool operator<(const Date& lhs, const Date& rhs) {
-  // воспользуемся тем фактом, что векторы уже можно сравнивать на <:
-  // создадим вектор из года, месяца и дня для каждой даты и сравним их
+  // let's use the fact that vectors could be compared with <:
+  // make vectors for date and compare them
   return vector<int>{lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()} <
       vector<int>{rhs.GetYear(), rhs.GetMonth(), rhs.GetDay()};
 }
 
-// даты будут по умолчанию выводиться в нужном формате
+// dates willbe printed in an apropriate format
 ostream& operator<<(ostream& stream, const Date& date) {
   stream << setw(4) << setfill('0') << date.GetYear() <<
       "-" << setw(2) << setfill('0') << date.GetMonth() <<
